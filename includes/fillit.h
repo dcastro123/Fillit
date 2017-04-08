@@ -66,4 +66,5 @@ int						ft_check_placement(char **solution_map, t_tetris *tstruct, int y, int k
 int						ft_solve_tetris(t_tetris *tstruct, char **solution_map, int tet);
 int						ft_get_count(t_tetris *tstruct, char **solution_map, int y, int k);
 int						ft_check_spaces(char **solution_map);
+void					ft_remove_tetri(t_tetris *tstruct, char **solution_map);
 #endif

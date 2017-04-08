@@ -18,7 +18,7 @@ int			map_size(void)
 	int 	a;
 	int		pieces;
 
-	a = 4;
+	a = 2;
 	pieces = (g_num_tetris * 4);
 	while ((a * a) - pieces < 0)
 		a++;
