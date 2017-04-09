@@ -13,13 +13,13 @@
 #include "../includes/fillit.h"
 #include "../libft/libft.h"
 
-void	ft_remove_tetri(t_tetris *tstruct, char **solution_map)
+void	ft_remove_tetri(t_tetris *tstruct, char **solution_map, int tet)
 {
 	int i;
 	int j;
 
+	tstruct->tet_value = tet;
 	i = 0;
-	printf("removing [%c] piece\n", tstruct->letter[tstruct->tet_value]);
 	while (i < g_map_size)
 	{
 		j = 0;
@@ -50,8 +50,8 @@ int		ft_check_placement(char **solution_map, t_tetris *tstruct, int y, int k)
 		{
 			if (solution_map[i][j] == '.')
 			{
-				if ((i == (tstruct->x_value[tstruct->tet_value][h]) + k) &&
-					(j == (tstruct->y_value[tstruct->tet_value][h]) + y))
+				if ((i == (tstruct->x_value[tstruct->tet_value][h]) + y) &&
+					(j == (tstruct->y_value[tstruct->tet_value][h]) + k))
 				{
 					h++;
 				}
@@ -72,9 +72,8 @@ void	ft_place_piece(char **solution_map, t_tetris *tstruct, int y, int k)
 	j = tstruct->tet_value;
 	while (i < 4)
 	{
-		solution_map[k + tstruct->x_value[j][i]]
-			[y + tstruct->y_value[j][i]] = tstruct->letter[j];
-		printf("placed: [%c] at [%i][%i]\n", tstruct->letter[j], (k + tstruct->x_value[j][i]), (y + tstruct->y_value[j][i]));
+		solution_map[y + tstruct->x_value[j][i]]
+			[k + tstruct->y_value[j][i]] = tstruct->letter[j];
 		i++;
 	}
 }
@@ -93,16 +92,15 @@ int		ft_solve_tetris(t_tetris *tstruct, char **solution_map, int tet)
 		k = 0;
 		while (solution_map[y][k] != '\0')
 		{
+		//	print_map(solution_map);
 			if (ft_check_placement(solution_map, tstruct, y, k))
 			{
-				printf("placing [%c] piece\n", tstruct->letter[tstruct->tet_value]);
 				ft_place_piece(solution_map, tstruct, y, k);
 				if (ft_solve_tetris(tstruct, solution_map, ++tet))
 					return (1);
-				ft_remove_tetri(tstruct, solution_map);
+				ft_remove_tetri(tstruct, solution_map, --tet);
 			}
 			k++;
-			printf("k value: %i\n", k);
 		}
 		y++;
 	}
@@ -126,7 +124,6 @@ void	ft_solve(char **tetris_array)
 		i++;
 		g_map_size = map_size() + i;
 		solution_map = create_map();
-		printf("MAP LEVEL UP========\n");
 	}
 	print_map(solution_map);
 }
