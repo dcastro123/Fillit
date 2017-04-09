@@ -20,13 +20,12 @@ void			ft_ydist(char **map, t_tetris *tstruct, int col)
 	int	k;
 	int	fp;
 
-	i = 0;
+	i = - 1;
 	k = 0;
-	while (map[i] != '\0')
+	while (map[++i] != '\0')
 	{
-		j = 0;
-		while (map[i][j] != '\0')
-		{
+		j = - 1;
+		while (map[i][++j] != '\0')
 			if (map[i][j] != '.' && k == 0)
 			{
 				fp = j;
@@ -38,9 +37,6 @@ void			ft_ydist(char **map, t_tetris *tstruct, int col)
 				tstruct->y_value[col][k] = j - fp;
 				k++;
 			}
-			j++;
-		}
-		i++;
 	}
 	tstruct->y_value[col][4] = '\0';
 }

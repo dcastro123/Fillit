@@ -92,7 +92,6 @@ int		ft_solve_tetris(t_tetris *tstruct, char **solution_map, int tet)
 		k = 0;
 		while (solution_map[y][k] != '\0')
 		{
-		//	print_map(solution_map);
 			if (ft_check_placement(solution_map, tstruct, y, k))
 			{
 				ft_place_piece(solution_map, tstruct, y, k);

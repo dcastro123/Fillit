@@ -15,7 +15,7 @@
 
 int			map_size(void)
 {
-	int 	a;
+	int		a;
 	int		pieces;
 
 	a = 2;
@@ -45,6 +45,7 @@ static char **ft_insert_dots(char **new_map)
 	new_map[i] = 0;
 	return (new_map);
 }
+
 char		**create_map(void)
 {
 	char	**new_map;

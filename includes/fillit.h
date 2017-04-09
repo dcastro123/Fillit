@@ -40,7 +40,8 @@ typedef struct			s_tetris
 
 void					ft_ydist(char **map, t_tetris *tstruct, int col);
 void					ft_xdist(char **map, t_tetris *tstruct, int col);
-t_tetris				*ft_tet_distance(char **tetris_array, t_tetris *tstruct);
+t_tetris				*ft_tet_distance(char **tetris_array,
+						t_tetris *tstruct);
 t_tetris				*ft_create_struct(void);
 
 int						ft_file_read(int fd);
@@ -57,8 +58,12 @@ int						*ft_make_indx_arr(char *tet_array);
 int						ft_check_read(int fd);
 
 void					ft_solve(char **tetris_array);
-void					ft_place_piece(char **solution_map, t_tetris *tstruct, int y, int k);
-int						ft_check_placement(char **solution_map, t_tetris *tstruct, int y, int k);
-int						ft_solve_tetris(t_tetris *tstruct, char **solution_map, int tet);
-void					ft_remove_tetri(t_tetris *tstruct, char **solution_map, int tet);
+void					ft_place_piece(char **solution_map,
+						t_tetris *tstruct, int y, int k);
+int						ft_check_placement(char **solution_map,
+						t_tetris *tstruct, int y, int k);
+int						ft_solve_tetris(t_tetris *tstruct,
+						char **solution_map, int tet);
+void					ft_remove_tetri(t_tetris *tstruct,
+						char **solution_map, int tet);
 #endif
