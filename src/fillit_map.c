@@ -74,15 +74,33 @@ void	print_map(char **new_map)
 		j = 0;
 		while (new_map[i][j] != '\0')
 		{
-			// if (j == 4)
-			// {
-			// 	ft_putchar('\n');
-			// 	j = 0;
-			// }
 			ft_putchar(new_map[i][j]);
 			j++;
 		}
 		ft_putchar('\n');
 		i++;
 	}
+}
+
+int		ft_check_spaces(char **solution_map)
+{
+	int x;
+	int y;
+	int count;
+
+	y = 0;
+	x = 0;
+	count = 0;
+	while (solution_map[y] != '\0')
+	{
+		x = 0;
+		while (solution_map[y][x] != '\0')
+		{
+			if (solution_map[y][x] == '.')
+				count++;
+			x++;
+		}
+		y++;
+	}
+	return ((count == (g_map_size * g_map_size) - (g_num_tetris * 4)) ? 1 : 0);
 }

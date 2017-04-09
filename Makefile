@@ -17,7 +17,7 @@ CC = gcc -Wall -Werror -Wextra
 INCL = -I /fillit.h
 
 SRC = src/main.c src/tetri_read.c src/tetri_solve.c src/tetri_chk.c\
-	 src/fillit_map.c src/tetris_distance.c src/last_read.c
+	 src/fillit_map.c src/tetris_struct.c
 
 OBJ = $(SRC:.c=.o)
 
@@ -33,7 +33,7 @@ clean :
 
 fclean : clean
 	make fclean -C libft
-	/bin/rm -f $(NAME)
+	@/bin/rm -f $(NAME)
 
 re : fclean all
 

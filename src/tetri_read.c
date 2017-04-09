@@ -13,43 +13,18 @@
 #include "../includes/fillit.h"
 #include "../libft/libft.h"
 
-char		**ft_array_to_alpha(char **tetris_array)
+int			ft_check_read(int fd)
 {
-	int		i;
-	int		j;
-	char	c;
+	char	buff[21];
+	int		curr;
+	int		last;
 
-	c = 65;
-	j = 0;
-	i = 0;
-
-	while (i < g_num_tetris && tetris_array[i] != '\0' )
+	while ((curr = read(fd, buff, 21)))
 	{
-		j = 0;
-		while (tetris_array[i][j] != '\0')
-		{
-			if (tetris_array[i][j] == '#')
-				tetris_array[i][j] = c;
-			j++;
-		}
-		tetris_array[i][j] = '\0';
-		c++;
-		i++;
+		buff[curr] = '\0';
+		last = curr;
 	}
-	return (tetris_array);
-}
-
-void		ft_tetris_destroy(char **tetris_array)
-{
-	int	i;
-
-	i = 0;
-	while (i < g_num_tetris)
-	{
-		free(tetris_array[i]);
-		i++;
-	}
-	free(tetris_array);
+	return ((last == 20) ? 1 : 0);
 }
 
 char		**ft_tetris_create(char **tetris_array, int fd)

@@ -13,15 +13,12 @@
 #include "../includes/fillit.h"
 #include "../libft/libft.h"
 
-/* checks the file*/
 static	int	file_check(int fd, char *buff, int num_columns, int num_lines)
 {
 	while ((read(fd, buff, 1)))
 	{
 		if (*buff != '\n' && *buff != '.' && *buff != '#')
 			return (0);
-		// if (*buff == '\n' && *buff++ != '\0')
-		// 	return (0);
 		else if (*buff == '\n')
 		{
 			num_lines++;
@@ -39,19 +36,16 @@ static	int	file_check(int fd, char *buff, int num_columns, int num_lines)
 		}
 		else
 			num_columns++;
-//	if (*buff == '\n' && *buff++ != '\0')
-//		return (0);
 	}
 	close(fd);
-	return ((*buff == '\n') ? TRUE : FALSE);
+	return ((*buff == '\n') ? 1 : 0);
 }
 
-/* reads file*/
 int			ft_file_read(int fd)
 {
-	char buff[1];
-	int	num_lines;
-	int	num_columns;
+	char	buff[1];
+	int		num_lines;
+	int		num_columns;
 
 	num_lines = 0;
 	num_columns = 0;
@@ -63,8 +57,7 @@ int			ft_file_read(int fd)
 		return (0);
 }
 
-/*how many tetris pieces*/
-static	int	count_blocks(char *tet_arr)
+static	int	ft_count_blocks(char *tet_arr)
 {
 	int	i;
 	int	num_chars;
@@ -76,10 +69,9 @@ static	int	count_blocks(char *tet_arr)
 		if (tet_arr[i] == '#')
 			num_chars++;
 	}
-	return ((num_chars == 4) ? TRUE : FALSE);
+	return ((num_chars == 4) ? 1 : 0);
 }
 
-/*number of touches to validate the tetris piece*/
 static	int	ft_touch_check(char *tet_arr)
 {
 	int	i;
@@ -102,7 +94,7 @@ static	int	ft_touch_check(char *tet_arr)
 		}
 		i++;
 	}
-	return ((touches == 6 || touches == 8) ? TRUE : FALSE);
+	return ((touches == 6 || touches == 8) ? 1 : 0);
 }
 
 int			ft_block_chk(char **tet_arr)
@@ -112,7 +104,7 @@ int			ft_block_chk(char **tet_arr)
 	i = 0;
 	while (i < g_num_tetris)
 	{
-		if ((count_blocks(tet_arr[i]) == 0) || (ft_touch_check(tet_arr[i]) == 0))
+		if (!(ft_count_blocks(tet_arr[i])) || (!(ft_touch_check(tet_arr[i]))))
 			return (0);
 		i++;
 	}
